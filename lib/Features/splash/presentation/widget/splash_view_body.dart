@@ -1,10 +1,12 @@
 import 'package:bookly/Features/splash/presentation/widget/sliding_text.dart';
-import 'package:bookly/core/constans/image_constance.dart';
+import 'package:bookly/core/constance/image_constance.dart';
+import 'package:bookly/core/constance/values_manger.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../../../../core/constans/constance.dart';
+import '../../../../core/constance/constants_manger.dart';
 import '../../../home/persentation/home_view/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -28,7 +30,7 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: Duration(seconds: AppSize.s1.toInt()),
     );
 
     slidingAnimation =
@@ -53,10 +55,10 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
       children: [
         SvgPicture.asset(
           ImageConstance.booklyLogo,
-          height: 60,
+          height: AppSize.s60.h,
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: AppSize.s20.h,
         ),
         SlidingText(slidingAnimation: slidingAnimation)
       ],
@@ -65,11 +67,11 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
 
   void navigateToHome() {
     Future.delayed(
-      const Duration(seconds: 2),
+       Duration(seconds: AppSize.s2.toInt()),
           () {
         Get.to(() => const HomeView(),
             transition: Transition.fade,
-            duration: kTranstionDuration);
+            duration: ConstantsManager.kTranstionDuration);
       },
     );
   }
