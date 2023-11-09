@@ -5,9 +5,9 @@ import 'package:bookly/core/constance/values_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import '../../../../core/constance/constants_manger.dart';
-import '../../../home/persentation/home_view/home_view.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../core/constance/route_manager.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -69,9 +69,12 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
     Future.delayed(
        Duration(seconds: AppSize.s2.toInt()),
           () {
-        Get.to(() => const HomeView(),
-            transition: Transition.fade,
-            duration: ConstantsManager.kTranstionDuration);
+
+        // Get.to(() => const HomeView(),
+        //     transition: Transition.fade,
+        //     duration: ConstantsManager.kTranstionDuration);
+
+            GoRouter.of(context).push(AppRouter.kHomeView);
       },
     );
   }
