@@ -9,5 +9,8 @@ class StringConstance{
   static const String rudyardKipling='Rudyard Kipling';
   static const String free='Free';
   static const String youCanAlsoLike='You can also like';
+  static const String search='Search';
+  static const String searchResult='Search Result';
+  static const String data='data';
 
 }
