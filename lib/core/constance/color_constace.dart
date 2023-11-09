@@ -13,4 +13,5 @@ class ColorConstance {
   static const Color grey2 = Color(0xff797979);
   static const Color error = Color(0xffe61f34);
   static const Color yellow =Color(0xffFFDD4F);
+  static const Color pink=Color(0xffEF8262);
 }
