@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/persentation/home_view/widget/custom_book_item.dart';
+import 'package:bookly/Features/home/presentation/view/widget/custom_book_item.dart';
 import 'package:bookly/core/constance/values_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

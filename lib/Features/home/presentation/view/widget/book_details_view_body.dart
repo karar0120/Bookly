@@ -1,6 +1,6 @@
 
-import 'package:bookly/Features/home/persentation/home_view/widget/book_details_section.dart';
-import 'package:bookly/Features/home/persentation/home_view/widget/similar_books_section.dart';
+import 'package:bookly/Features/home/presentation/view/widget/book_details_section.dart';
+import 'package:bookly/Features/home/presentation/view/widget/similar_books_section.dart';
 import 'package:bookly/core/constance/values_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

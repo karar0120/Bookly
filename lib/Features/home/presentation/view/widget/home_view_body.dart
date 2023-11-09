@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/persentation/home_view/widget/feature_view_item.dart';
+import 'package:bookly/Features/home/presentation/view/widget/feature_view_item.dart';
 import 'package:bookly/core/constance/string_constace.dart';
 import 'package:bookly/core/constance/values_manger.dart';
 import 'package:flutter/material.dart';
