@@ -25,7 +25,7 @@ class FeatureListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return  Padding(
                   padding:const EdgeInsets.all(AppSize.s8),
-                  child: CustomBookImage(imageLink:state.books[index].volumeInfo.imageLinks.thumbnail),
+                  child: CustomBookImage(imageLink:state.books[index].volumeInfo.imageLinks?.thumbnail??""),
                 );
               }),
         );

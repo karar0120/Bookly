@@ -24,7 +24,7 @@ class BookListViewItem  extends StatelessWidget {
         height: AppSize.s125.h,
         child: Row(
           children: [
-            CustomBookImage(imageLink: bookModel.volumeInfo.imageLinks.thumbnail),
+            CustomBookImage(imageLink: bookModel.volumeInfo.imageLinks?.thumbnail??""),
             SizedBox(
               width: AppSize.s30.w,
             ),

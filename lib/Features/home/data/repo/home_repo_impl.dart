@@ -15,7 +15,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       var data = await apiService.get(
           endPoint:
-              "volumes?Filtering=free-ebooks&Sorting=newest&q=subject:Programming");
+              "volumes?Filtering=free-ebooks&Sorting=newest&q=computer science");
 
       return right(List<BookModel>.from(
           (data['items'] as List).map((e) => BookModel.fromJson(e))));
