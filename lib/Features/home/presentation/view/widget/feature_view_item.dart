@@ -14,24 +14,25 @@ class FeatureListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
         builder: (context, state) {
-      if (state is FeaturedBooksLoading) {
-        return const CustomLoadingIndicator();
-      } else if (state is FeaturedBooksFailure) {
-        return CustomErrorWidget(errMessage: state.errMessage);
-      } else {
+      if (state is FeaturedBooksSuccess) {
         return SizedBox(
           height: AppSize.s200.h,
           child: ListView.builder(
               shrinkWrap: true,
+              itemCount: state.books.length,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.all(AppSize.s8),
-                  child: CustomBookImage(),
+                return  Padding(
+                  padding:const EdgeInsets.all(AppSize.s8),
+                  child: CustomBookImage(imageLink:state.books[index].volumeInfo.imageLinks.thumbnail),
                 );
               }),
         );
+      } else if (state is FeaturedBooksFailure) {
+        return CustomErrorWidget(errMessage: state.errMessage);
+      } else {
+        return const CustomLoadingIndicator();
       }
     });
   }
