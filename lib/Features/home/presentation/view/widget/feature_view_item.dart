@@ -6,6 +6,9 @@ import 'package:bookly/core/widget/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/constance/route_manager.dart';
 
 class FeatureListView extends StatelessWidget {
   const FeatureListView({super.key});
@@ -25,7 +28,14 @@ class FeatureListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return  Padding(
                   padding:const EdgeInsets.all(AppSize.s8),
-                  child: CustomBookImage(imageLink:state.books[index].volumeInfo.imageLinks?.thumbnail??""),
+                  child: GestureDetector(
+                      onTap: (){
+                        GoRouter.of(context).push(
+                          AppRouter.kBookDetailsView,
+                          extra: state.books[index],
+                        );
+                      },
+                      child: CustomBookImage(imageLink:state.books[index].volumeInfo.imageLinks?.thumbnail??"")),
                 );
               }),
         );
