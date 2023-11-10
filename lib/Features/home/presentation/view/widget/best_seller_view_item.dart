@@ -1,16 +1,18 @@
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly/Features/home/presentation/view/widget/custom_book_item.dart';
 import 'package:bookly/core/constance/route_manager.dart';
 import 'package:bookly/core/constance/values_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/constance/image_constance.dart';
 import '../../../../../core/constance/string_constace.dart';
 import '../../../../../core/constance/style_manger.dart';
 import 'book_rating.dart';
 
 class BookListViewItem  extends StatelessWidget {
-  const BookListViewItem ({super.key});
+  final BookModel bookModel;
+  const BookListViewItem ({super.key,required this.bookModel});
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +24,7 @@ class BookListViewItem  extends StatelessWidget {
         height: AppSize.s125.h,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.6 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSize.s16.r),
-                    image:const DecorationImage(
-                        fit:BoxFit.fill ,
-                        image:AssetImage(
-                            ImageConstance.testImage
-                        )
-                    )
-                ),
-              ),
-            ),
+            CustomBookImage(imageLink: bookModel.volumeInfo.imageLinks.thumbnail),
             SizedBox(
               width: AppSize.s30.w,
             ),
@@ -45,7 +34,8 @@ class BookListViewItem  extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width*0.5,
-                    child: const Text(StringConstance.harryPotterAndTheGobletOfFire,
+                    child: Text(
+                      bookModel.volumeInfo.title!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20,
@@ -55,8 +45,8 @@ class BookListViewItem  extends StatelessWidget {
                   SizedBox(
                     height: AppSize.s3.h,
                   ),
-                  const Text(
-                    StringConstance.jKRowling,
+                  Text(
+                  bookModel.volumeInfo.authors![0],
                     style:Styles.textStyle14,
                   ),
                   SizedBox(
@@ -64,13 +54,14 @@ class BookListViewItem  extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text(StringConstance.price,
+                      Text(StringConstance.free,
                         style: Styles.textStyle20.copyWith(
                             fontWeight: FontWeight.bold
                         ),
                       ),
                       const Spacer(),
-                      const BookRating(),
+                     BookRating(rating:bookModel.volumeInfo.averageRating?.round()??0,
+                      count:bookModel.volumeInfo.ratingsCount??0 ,),
                     ],
                   )
                 ],
