@@ -8,7 +8,9 @@ class CustomBookDetailsAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(onPressed: () {},
+        IconButton(onPressed: () {
+          Navigator.pop(context);
+        },
           color:Theme.of(context).primaryColorLight,
           icon: const Icon(Icons.close),
         ),

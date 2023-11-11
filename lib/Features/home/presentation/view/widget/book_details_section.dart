@@ -1,58 +1,65 @@
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/constance/string_constace.dart';
 import '../../../../../core/constance/style_manger.dart';
-import '../../../../../core/constance/values_manger.dart';
 import 'book_action.dart';
 import 'book_rating.dart';
 import 'custom_book_item.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.book});
 
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width*0.2),
-          child: const CustomBookImage(),
+          padding: EdgeInsets.symmetric(
+            horizontal: width * .2,
+          ),
+          child: CustomBookImage(
+            imageLink: book.volumeInfo.imageLinks?.thumbnail ?? '',
+          ),
         ),
-        SizedBox(
-          height: AppSize.s43.h,
+        const SizedBox(
+          height: 43,
         ),
         Text(
-          StringConstance.theJungleBook,
+          book.volumeInfo.title!,
           style: Styles.textStyle30.copyWith(
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(
-          height: AppSize.s6.h,
+        const SizedBox(
+          height: 6,
         ),
         Opacity(
           opacity: .7,
           child: Text(
-            StringConstance.rudyardKipling,
+            book.volumeInfo.authors?[0] ?? '',
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        SizedBox(
-          height: AppSize.s18.h,
+        const SizedBox(
+          height: 18,
         ),
-        const BookRating(
+        BookRating(
+          rating: book.volumeInfo.averageRating?.round() ?? 0,
+          count: book.volumeInfo.ratingsCount ?? 0,
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-        SizedBox(
-          height:AppSize.s37.h,
+        const SizedBox(
+          height: 37,
         ),
-        const BooksAction(),
+        BooksAction(
+          bookModel: book,
+        ),
       ],
     );
   }
